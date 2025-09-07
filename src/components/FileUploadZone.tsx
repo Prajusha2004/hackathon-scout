@@ -92,28 +92,28 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({ onProblemsExtrac
         `}
       >
         <input {...getInputProps()} />
-        <div className="p-12 text-center space-y-4">
-          <div className="w-16 h-16 mx-auto rounded-full bg-gradient-primary flex items-center justify-center shadow-glow">
-            <Upload className="w-8 h-8 text-primary-foreground" />
+        <div className="p-6 md:p-12 text-center space-y-4">
+          <div className="w-12 h-12 md:w-16 md:h-16 mx-auto rounded-full bg-gradient-primary flex items-center justify-center shadow-glow">
+            <Upload className="w-6 h-6 md:w-8 md:h-8 text-primary-foreground" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-base md:text-lg font-semibold mb-2">
               {isDragActive ? 'Drop files here' : 'Upload hackathon files'}
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-sm md:text-base text-muted-foreground mb-4">
               Drag & drop files or click to browse
             </p>
-            <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-xs md:text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
-                <FileText className="w-4 h-4" />
+                <FileText className="w-3 h-3 md:w-4 md:h-4" />
                 PDF, DOC
               </div>
               <div className="flex items-center gap-1">
-                <FileSpreadsheet className="w-4 h-4" />
+                <FileSpreadsheet className="w-3 h-3 md:w-4 md:h-4" />
                 Excel, CSV
               </div>
               <div className="flex items-center gap-1">
-                <LinkIcon className="w-4 h-4" />
+                <LinkIcon className="w-3 h-3 md:w-4 md:h-4" />
                 TXT
               </div>
             </div>

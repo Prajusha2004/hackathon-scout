@@ -42,20 +42,20 @@ export const AnalysisResults: React.FC<AnalysisResultsProps> = ({
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Control Panel */}
-      <Card className="p-6 bg-gradient-card border-0 shadow-medium">
-        <div className="flex items-center justify-between mb-4">
+      <Card className="p-4 md:p-6 bg-gradient-card border-0 shadow-medium">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
-            <h2 className="text-2xl font-bold">Analysis Dashboard</h2>
-            <p className="text-muted-foreground">
+            <h2 className="text-xl md:text-2xl font-bold">Analysis Dashboard</h2>
+            <p className="text-sm md:text-base text-muted-foreground">
               {problems.length} problems • {analyzedProblems.length} analyzed
             </p>
           </div>
           <Button
             onClick={onAnalyzeAll}
             disabled={isAnalyzing || unanalyzedProblems.length === 0}
-            className="bg-gradient-primary border-0 shadow-soft hover:shadow-medium transition-all duration-300"
+            className="bg-gradient-primary border-0 shadow-soft hover:shadow-medium transition-all duration-300 w-full sm:w-auto"
           >
             <Brain className="w-4 h-4 mr-2" />
             {isAnalyzing ? 'Analyzing...' : 'Analyze All'}
@@ -92,58 +92,60 @@ export const AnalysisResults: React.FC<AnalysisResultsProps> = ({
               <Card key={problem.id} className="p-4 border shadow-soft hover:shadow-medium transition-all duration-300">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className={`
-                        w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold
-                        ${index === 0 ? 'bg-gradient-primary text-primary-foreground shadow-glow' : 
-                          index === 1 ? 'bg-warning text-warning-foreground' :
-                          index === 2 ? 'bg-success text-success-foreground' :
-                          'bg-muted text-muted-foreground'}
-                      `}>
-                        {index + 1}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <div className={`
+                          w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold
+                          ${index === 0 ? 'bg-gradient-primary text-primary-foreground shadow-glow' : 
+                            index === 1 ? 'bg-warning text-warning-foreground' :
+                            index === 2 ? 'bg-success text-success-foreground' :
+                            'bg-muted text-muted-foreground'}
+                        `}>
+                          {index + 1}
+                        </div>
+                        <h3 className="text-base sm:text-lg font-semibold line-clamp-1">{problem.title}</h3>
                       </div>
-                      <h3 className="text-lg font-semibold">{problem.title}</h3>
-                      <Badge className={getDifficultyColor(problem.analysis!.difficulty)}>
+                      <Badge className={`${getDifficultyColor(problem.analysis!.difficulty)} text-xs`}>
                         {problem.analysis!.difficulty}
                       </Badge>
                     </div>
                     <p className="text-muted-foreground mb-4 line-clamp-2">
                       {problem.description}
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-4">
                       <div className="space-y-1">
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1 text-xs md:text-sm text-muted-foreground">
                           <Brain className="w-3 h-3" />
                           Depth
                         </div>
-                        <div className={`text-lg font-bold ${getScoreColor(problem.analysis!.depthScore)}`}>
+                        <div className={`text-base md:text-lg font-bold ${getScoreColor(problem.analysis!.depthScore)}`}>
                           {problem.analysis!.depthScore}%
                         </div>
                       </div>
                       <div className="space-y-1">
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1 text-xs md:text-sm text-muted-foreground">
                           <TrendingUp className="w-3 h-3" />
                           Competition
                         </div>
-                        <div className={`text-lg font-bold ${getScoreColor(100 - problem.analysis!.competitionScore)}`}>
+                        <div className={`text-base md:text-lg font-bold ${getScoreColor(100 - problem.analysis!.competitionScore)}`}>
                           {100 - problem.analysis!.competitionScore}%
                         </div>
                       </div>
                       <div className="space-y-1">
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1 text-xs md:text-sm text-muted-foreground">
                           <Target className="w-3 h-3" />
                           Market
                         </div>
-                        <div className={`text-lg font-bold ${getScoreColor(problem.analysis!.marketPotential)}`}>
+                        <div className={`text-base md:text-lg font-bold ${getScoreColor(problem.analysis!.marketPotential)}`}>
                           {problem.analysis!.marketPotential}%
                         </div>
                       </div>
                       <div className="space-y-1">
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1 text-xs md:text-sm text-muted-foreground">
                           <Clock className="w-3 h-3" />
                           Time
                         </div>
-                        <div className="text-sm font-medium">
+                        <div className="text-xs md:text-sm font-medium">
                           {problem.analysis!.estimatedTime}
                         </div>
                       </div>
@@ -170,18 +172,20 @@ export const AnalysisResults: React.FC<AnalysisResultsProps> = ({
         <h2 className="text-2xl font-bold mb-6">All Problems</h2>
         <div className="space-y-4">
           {problems.map((problem) => (
-            <Card key={problem.id} className="p-4 border shadow-soft hover:shadow-medium transition-all duration-300">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-lg font-semibold">{problem.title}</h3>
-                    <Badge variant="outline">{problem.sourceType}</Badge>
-                    {problem.analysis && (
-                      <Badge className={getDifficultyColor(problem.analysis.difficulty)}>
-                        {problem.analysis.difficulty}
-                      </Badge>
-                    )}
-                  </div>
+              <Card key={problem.id} className="p-3 md:p-4 border shadow-soft hover:shadow-medium transition-all duration-300">
+                <div className="flex flex-col gap-3">
+                  <div className="flex-1">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+                      <h3 className="text-base md:text-lg font-semibold line-clamp-2">{problem.title}</h3>
+                      <div className="flex gap-2">
+                        <Badge variant="outline" className="text-xs">{problem.sourceType}</Badge>
+                        {problem.analysis && (
+                          <Badge className={`${getDifficultyColor(problem.analysis.difficulty)} text-xs`}>
+                            {problem.analysis.difficulty}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
                   <p className="text-muted-foreground mb-3 line-clamp-2">{problem.description}</p>
                   <div className="text-sm text-muted-foreground mb-4">
                     Source: {problem.source}
@@ -189,28 +193,28 @@ export const AnalysisResults: React.FC<AnalysisResultsProps> = ({
                   
                   {problem.analysis ? (
                     <div className="space-y-4">
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                         <div className="space-y-1">
-                          <div className="text-sm text-muted-foreground">Depth Score</div>
-                          <div className={`text-lg font-bold ${getScoreColor(problem.analysis.depthScore)}`}>
+                          <div className="text-xs md:text-sm text-muted-foreground">Depth Score</div>
+                          <div className={`text-base md:text-lg font-bold ${getScoreColor(problem.analysis.depthScore)}`}>
                             {problem.analysis.depthScore}%
                           </div>
                         </div>
                         <div className="space-y-1">
-                          <div className="text-sm text-muted-foreground">Competition</div>
-                          <div className={`text-lg font-bold ${getScoreColor(100 - problem.analysis.competitionScore)}`}>
+                          <div className="text-xs md:text-sm text-muted-foreground">Competition</div>
+                          <div className={`text-base md:text-lg font-bold ${getScoreColor(100 - problem.analysis.competitionScore)}`}>
                             {100 - problem.analysis.competitionScore}%
                           </div>
                         </div>
                         <div className="space-y-1">
-                          <div className="text-sm text-muted-foreground">Market Potential</div>
-                          <div className={`text-lg font-bold ${getScoreColor(problem.analysis.marketPotential)}`}>
+                          <div className="text-xs md:text-sm text-muted-foreground">Market Potential</div>
+                          <div className={`text-base md:text-lg font-bold ${getScoreColor(problem.analysis.marketPotential)}`}>
                             {problem.analysis.marketPotential}%
                           </div>
                         </div>
                         <div className="space-y-1">
-                          <div className="text-sm text-muted-foreground">Estimated Time</div>
-                          <div className="text-sm font-medium">{problem.analysis.estimatedTime}</div>
+                          <div className="text-xs md:text-sm text-muted-foreground">Estimated Time</div>
+                          <div className="text-xs md:text-sm font-medium">{problem.analysis.estimatedTime}</div>
                         </div>
                       </div>
                       
