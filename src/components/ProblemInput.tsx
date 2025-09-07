@@ -45,20 +45,36 @@ export const ProblemInput: React.FC<ProblemInputProps> = ({ type, onProblemAdd }
 
     try {
       if (type === 'url') {
-        // Simulate URL fetching
+        // Simulate URL fetching and extract multiple problems
         await new Promise(resolve => setTimeout(resolve, 1500));
         
-        onProblemAdd({
-          title: `Problem from ${new URL(url).hostname}`,
-          description: "Develop a real-time collaborative platform that enables distributed teams to work together seamlessly on complex projects with version control and conflict resolution.",
-          source: url,
-          sourceType: 'url',
-        });
+        const urlProblems = [
+          {
+            title: `Collaborative Platform - ${new URL(url).hostname}`,
+            description: "Develop a real-time collaborative platform that enables distributed teams to work together seamlessly on complex projects with version control and conflict resolution.",
+            source: url,
+            sourceType: 'url' as const,
+          },
+          {
+            title: `IoT Smart City Solution - ${new URL(url).hostname}`,
+            description: "Create an IoT-based smart city infrastructure that optimizes traffic flow, energy consumption, and waste management using sensor networks.",
+            source: url,
+            sourceType: 'url' as const,
+          },
+          {
+            title: `Fintech Payment Gateway - ${new URL(url).hostname}`,
+            description: "Build a secure, low-cost payment gateway for emerging markets that works with minimal internet connectivity and supports multiple currencies.",
+            source: url,
+            sourceType: 'url' as const,
+          }
+        ];
+
+        urlProblems.forEach(problem => onProblemAdd(problem));
 
         setUrl('');
         toast({
           title: "Success",
-          description: "Problem extracted from URL successfully",
+          description: `Extracted ${urlProblems.length} problems from URL successfully`,
         });
       } else {
         onProblemAdd({

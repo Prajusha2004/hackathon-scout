@@ -30,14 +30,38 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({ onProblemsExtrac
       // Mock extraction of problems from file
       const mockProblems = [
         {
-          title: `Problem from ${file.name}`,
+          title: `AI Healthcare Monitor - ${file.name}`,
           description: "Create an AI-powered healthcare monitoring system that can predict patient health deterioration using wearable device data and electronic health records.",
           source: file.name,
           sourceType: 'file' as const,
         },
         {
-          title: `Challenge from ${file.name}`,
+          title: `Smart Urban Mobility - ${file.name}`,
           description: "Develop a sustainable urban mobility solution that reduces carbon emissions while improving transportation efficiency in metropolitan areas.",
+          source: file.name,
+          sourceType: 'file' as const,
+        },
+        {
+          title: `Climate Data Visualizer - ${file.name}`,
+          description: "Build an interactive platform that visualizes real-time climate data and helps communities track their environmental impact and carbon footprint.",
+          source: file.name,
+          sourceType: 'file' as const,
+        },
+        {
+          title: `EdTech Learning Assistant - ${file.name}`,
+          description: "Design an AI-powered personalized learning assistant that adapts to individual student learning styles and provides customized educational content.",
+          source: file.name,
+          sourceType: 'file' as const,
+        },
+        {
+          title: `Blockchain Supply Chain - ${file.name}`,
+          description: "Create a blockchain-based supply chain transparency system that allows consumers to trace products from origin to purchase.",
+          source: file.name,
+          sourceType: 'file' as const,
+        },
+        {
+          title: `Mental Health Companion - ${file.name}`,
+          description: "Develop a digital mental health companion app that provides personalized coping strategies and connects users with professional resources.",
           source: file.name,
           sourceType: 'file' as const,
         }
